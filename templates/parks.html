@@ -56,37 +56,32 @@
 
         <table>
             <tr>
+                <th>State</th>
+                <th>County</th>
                 <th>Time Zone</th>
-                <th>Biomes</th>
-                <th>Strength</th>
+                <th>Climate</th>
+                <th>Weather</th>
             </tr>
             <tr>
                 <td>
+                    <label for="state-name">Enter a State Name:</label>
+                    <input type="State Name" id="state-name" />
+                </td>
+
+                <td>
+                    <label for="county-name">Enter a State Name:</label>
+                    <input type="County Name" id="county-name" />
+                </td>
+                
+                <td> 
                     <label for="time-zones">Choose a Time Zone:</label>
-                    <select name="Time Zones" id="time-zones">
-                    <option value="volvo">-11</option>
-                    <option value="saab">-10</option>
-                    <option value="mercedes">-9</option>
-                    <option value="audi">-8</option>
-                    <option value="volvo">-7</option>
-                    <option value="saab">-6</option>
-                    <option value="mercedes">-5</option>
-                    <option value="audi">-4</option>
-                    <option value="volvo">-3</option>
-                    <option value="saab">-2</option>
-                    <option value="mercedes">-1</option>
-                    <option value="audi">UTC</option>
-                    <option value="volvo">+1</option>
-                    <option value="saab">+2</option>
-                    <option value="mercedes">+3</option>
-                    <option value="audi">+4</option>
-                    <option value="volvo">+5</option>
-                    <option value="saab">+6</option>
-                    <option value="mercedes">+7</option>
-                    <option value="audi">+8</option>
-                    <option value="volvo">+9</option>
-                    <option value="saab">+10</option>
-                    <option value="mercedes">+11</option>
+                    <select name="timezones" id="time-zones">
+                    </select>
+                </td>
+
+                <td>
+                    <label for="climate-dd">Choose a Climate:</label>
+                    <select name="climate" id="climate-dd">
                     </select>
                 </td>
 
@@ -104,16 +99,98 @@
                     <option value="arctic tundra">Arctic Tundra</option>
                     </select>
                 </td>
+            </tr>
+        </table> 
+        <hr> 
 
+        <table>
+            <tr>
+                <th>Park</th>
+                <th>Trails</th>
+                <th>Terrain</th>
+                <th>Campsites</th>
+                <th>Difficulty</th>
+            </tr>
+            <tr>
+                <td>
+                    <label for="park-name">Enter a Park Name:</label>
+                    <input type="Park Name" id="park-name" />
+                </td>
 
                 <td>
-            
+                    <label for="trail-name">Enter a Trail Name:</label>
+                    <input type="Trail Name" id="trail-name" />
+                </td>
+                
+                <td> 
+                    <label for="terrain-name">Select the Terrain Type:</label>
+                    <select name="terrain type" id="terrain-dd">
+                    </select>
+
+                <td>
+                    <label for="campsite-dd">Select Campsite Option:</label>
+                    <select name="campsite" id="campsite-dd">
+                    </select>
+                </td>
+
+                <td>
+                    <label for="diff-dd">Select the Difficulty:</label>
+                    <select name="difficulty" id="diff-dd">
+                    </select>
                 </td>
             </tr>
         </table> 
         <hr> 
 
-        <footer>
+        <table>
+            <tr>
+                <th>Mammals</th>
+                <th>Reptiles</th>
+                <th>Fish</th>
+                <th>Birds</th>
+                <th>Trees</th>
+                <th>Flora</th>
+
+            </tr>
+            <tr>
+                <td>
+                    <label for="mammal-name">Enter the Mammal Name:</label>
+                    <input type="mammal name" id="mammal-name" />
+                </td>
+
+                <td>
+                    <label for="reptile-name">Enter the Reptile Name:</label>
+                    <input type="reptile name" id="reptile-name" />
+                </td>
+                
+                <td> 
+                    <label for="fish-name">Enter the Fish Name:</label>
+                    <input type="fish name" id="fish-name" />
+                </td>
+
+                <td>
+                    <label for="bird-name">Enter the Bird Name:</label>
+                    <input type="bird name" id="bird-name" />
+                </td>
+
+                <td>
+                    <label for="tree-name">Select the Difficulty:</label>
+                    <input type="tree name" id="tree-name" />
+                </td>
+
+                <td>
+                    <label for="flora-dd">Enter the Flora Name:</label>
+                    <input type="flora name" id="flora-name" />
+                </td>
+            </tr>
+        </table> 
+
+        <hr>
+        <button>SUBMIT</button>
+        <hr>
+
+
+        <footer id="footer">
             <p>@ National Parks Service Database 2022 </p>
         </footer> 
     </body>
