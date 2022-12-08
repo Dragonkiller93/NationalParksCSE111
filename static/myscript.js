@@ -1,5 +1,20 @@
 // Get the element with id="defaultOpen" and click on it
-document.getElementById("defaultOpen").click();
+let request = new XMLHttpRequest();
+request.open("GET","/getdata");
+request.send();
+request.onload= () =>{
+    data = JSON.parse(request.response);
+    loadtimezones(data);
+}
+
+function loadtimezones(data){
+    timezonelist = document.getElementById("time-zones");
+    timezones = data["timezones"]
+    for (let i =0; i < Object.keys(timezones).length;i++){
+        let newOption = new Option(timezones[i],timezones[i]);
+        timezonelist.add(newOption,undefined);
+    }
+}
 
 function openCity(evt, cityName) {
     var i, tabcontent, tablinks;     // Declare all variables
@@ -17,24 +32,9 @@ function openCity(evt, cityName) {
     document.getElementById(cityName).style.display = "block";     // Show the current tab, and add an "active" class to the button that opened the tab
     evt.currentTarget.className += " active";
 
-    let request = new XMLHttpRequest();
-    request.open("GET","/getdata");
-    request.send();
-    request.onload= () =>{
-        data = JSON.parse(request.response);
-        loadtimezones(data);
-    }
-
-    timezonelist = document.getElementById("time-zones");
+    
 }
 
-function loadtimezones(data){
-    timezones = data["timezones"]
-    for (let i =0; i < Object.keys(timezones).length;i++){
-        let newOption = new Option(timezones[i],timezones[i]);
-        timezonelist.add(newOption,undefined);
-    }
-}
 
 
 // function applyFilter() {
@@ -99,38 +99,50 @@ function applyFilter() {
     filter16 = document.getElementById("flora-name").value;
 
     var myDict = {};
-    myDict["state-name"] = filter1;
+    myDict["s_name"] = filter1;
     myDict["county-name"] = filter2;
-    myDict["time-zones"] = filter3;
-    myDict["climate-dd"] = filter4;
-    myDict["biome-type"] = filter5;
-    myDict["park-name"] = filter6;
-    myDict["trail-name"] = filter7;
-    myDict["terrain-dd"] = filter8;
-    myDict["campsite-dd"] = filter9;
-    myDict["diff-dd"] = filter10;
-    myDict["mammal-name"] = filter11;
-    myDict["reptile-name"] = filter12;
-    myDict["fish-name"] = filter13;
-    myDict["bird-name"] = filter14;
-    myDict["tree-name"] = filter15;
-    myDict["flora-name"] = filter16;
+    myDict["s_timezone"] = filter3;
+    myDict["s_climate"] = filter4;
+    myDict["p_biome"] = filter5;
+    myDict["p_name"] = filter6;
+    myDict["t_name"] = filter7;
+    myDict["t_terrain"] = filter8;
+    myDict["t_campsites"] = filter9;
+    myDict["t_difficulty"] = filter10;
+    myDict["w_mammals"] = filter11;
+    myDict["w_reptiles"] = filter12;
+    myDict["w_fish"] = filter13;
+    myDict["w_birds"] = filter14;
+    myDict["w_trees"] = filter15;
+    myDict["w_flora"] = filter16;
 
-
-    const request = new XMLHttpRequest();
-    const method =  "GET";
-    let text = "<table border='1'><tr><th>Park Name</th><th>More Data</th></tr>";
-    request.open("GET", url + "/grades");
-    request.setRequestHeader("Content-Type", "application/json");
-    json_data = JSON.stringify(myDict);
-    request.onload = function() {
-        let data = JSON.parse(request.response);
-        let keys = Object.keys(data);
-        for (let i = 0; i < keys.length; i++) {
-            text += "<tr><td>" + keys[i] + "</td><td>" + data[keys[i]] + "</td></tr>";
-        }
-        text += "</table>";
-        document.getElementById("showParks").innerHTML = text;
+    for(thing in myDict){
+        if(myDict[thing]=="blank" || myDict[thing]=="")delete myDict[thing];
     }
-    request.send(json_data);
+    console.log(myDict);
+
+    // const request = new XMLHttpRequest();
+    // const method =  "GET";
+    // let text = "<table border='1'><tr><th>Park Name</th><th>More Data</th></tr>";
+    // request.open("GET", url + "/grades");
+    // request.setRequestHeader("Content-Type", "application/json");
+    // json_data = JSON.stringify(myDict);
+    // request.onload = function() {
+    //     let data = JSON.parse(request.response);
+    //     let keys = Object.keys(data);
+    //     for (let i = 0; i < keys.length; i++) {
+    //         text += "<tr><td>" + keys[i] + "</td><td>" + data[keys[i]] + "</td></tr>";
+    //     }
+    //     text += "</table>";
+    //     document.getElementById("showParks").innerHTML = text;
+    // }
+    // request.send(json_data);
+    let request = new XMLHttpRequest();
+    request.open("PUT","/grades",true);
+    request.setRequestHeader("Content-Type", "application/json");
+    request.send(JSON.stringify(myDict));
+    
+    request.onload= () =>{
+        console.log(request.response);
+    }
 }
