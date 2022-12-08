@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<!-- https://www.w3schools.com/howto/howto_js_tabs.asp -->
+
+<html> 
+    <head>
+        <!-- <meta charset="UTF-8"> -->
+        <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1">
+        <title>National Park Services | Parks Page</title>
+        <link href='https://fonts.googleapis.com/css?family=Anaheim' rel='stylesheet'>
+        <link rel="stylesheet" href="../static/stylesheet.css"/>
+        <script type="text/javascript" src="../static/myscript.js"></script>   
+    </head>
+
+
+    <body>
+        <div class="nav">
+            <form method="GET"> 
+                <!-- <input type="search" class="searchbar" name="search" placeholder="Search title, author, or keyword..." size="40">
+                <button type="submit">Search</button> -->
+                <a href={{url_for('start')}}>Home Page</a>
+                <a href={{url_for('parks')}}>Parks Page</a>
+            </form> 
+        </div>
+
+        <div class="parks-page">
+            <h1>National Parks Page </h1>
+            <hr>
+        </div>
+
+        <div class="tab">
+            <button class="tablinks" onclick="openCity(event, 'London')" id="defaultOpen">London</button>
+            <button class="tablinks" onclick="openCity(event, 'Paris')">Paris</button>
+            <button class="tablinks" onclick="openCity(event, 'Tokyo')">Tokyo</button>
+        </div>
+        
+        <!-- Tab content -->
+        <div id="London" class="tabcontent">
+            <span onclick="this.parentElement.style.display='none'" class="topright">&times</span>
+            <h3>National Parks</h3>
+            <p>London is the capital city of England.</p>
+        </div>
+
+        <div id="Paris" class="tabcontent">
+            <span onclick="this.parentElement.style.display='none'" class="topright">&times</span>
+            <h3>Paris</h3>
+            <p>Paris is the capital of France.</p>
+        </div>
+
+        <div id="Tokyo" class="tabcontent">
+            <span onclick="this.parentElement.style.display='none'" class="topright">&times</span>
+            <h3>Tokyo</h3>
+            <p>Tokyo is the capital of Japan.</p>
+        </div>
+        <!-- horizontal line for tables underneath -->
+        <hr>
+
+        <table>
+            <tr>
+                <th>State</th>
+                <th>County</th>
+                <th>Time Zone</th>
+                <th>Climate</th>
+                <th>Weather</th>
+            </tr>
+            <tr>
+                <td>
+                    <label for="state-name">Enter a State Name:</label>
+                    <input type="State Name" id="state-name" />
+                </td>
+
+                <td>
+                    <label for="county-name">Enter a State Name:</label>
+                    <input type="County Name" id="county-name" />
+                </td>
+                
+                <td> 
+                    <label for="time-zones">Choose a Time Zone:</label>
+                    <select name="timezones" id="time-zones">
+                    </select>
+                </td>
+
+                <td>
+                    <label for="climate-dd">Choose a Climate:</label>
+                    <select name="climate" id="climate-dd">
+                    </select>
+                </td>
+
+                <td>
+                    <label for="biome-type">Choose a Time Zone:</label>
+                    <select name="Biomes" id="biome-type">
+                    </select>
+                </td>
+            </tr>
+        </table> 
+        <hr> 
+
+        <table>
+            <tr>
+                <th>Park</th>
+                <th>Trails</th>
+                <th>Terrain</th>
+                <th>Campsites</th>
+                <th>Difficulty</th>
+            </tr>
+            <tr>
+                <td>
+                    <label for="park-name">Enter a Park Name:</label>
+                    <input type="Park Name" id="park-name" />
+                </td>
+
+                <td>
+                    <label for="trail-name">Enter a Trail Name:</label>
+                    <input type="Trail Name" id="trail-name" />
+                </td>
+                
+                <td> 
+                    <label for="terrain-name">Select the Terrain Type:</label>
+                    <select name="terrain type" id="terrain-dd">
+                    </select>
+
+                <td>
+                    <label for="campsite-dd">Select Campsite Option:</label>
+                    <select name="campsite" id="campsite-dd">
+                    </select>
+                </td>
+
+                <td>
+                    <label for="diff-dd">Select the Difficulty:</label>
+                    <select name="difficulty" id="diff-dd">
+                    </select>
+                </td>
+            </tr>
+        </table> 
+        <hr> 
+
+        <table>
+            <tr>
+                <th>Mammals</th>
+                <th>Reptiles</th>
+                <th>Fish</th>
+                <th>Birds</th>
+                <th>Trees</th>
+                <th>Flora</th>
+
+            </tr>
+            <tr>
+                <td>
+                    <label for="mammal-name">Enter the Mammal Name:</label>
+                    <input type="mammal name" id="mammal-name" />
+                </td>
+
+                <td>
+                    <label for="reptile-name">Enter the Reptile Name:</label>
+                    <input type="reptile name" id="reptile-name" />
+                </td>
+                
+                <td> 
+                    <label for="fish-name">Enter the Fish Name:</label>
+                    <input type="fish name" id="fish-name" />
+                </td>
+
+                <td>
+                    <label for="bird-name">Enter the Bird Name:</label>
+                    <input type="bird name" id="bird-name" />
+                </td>
+
+                <td>
+                    <label for="tree-name">Select the Difficulty:</label>
+                    <input type="tree name" id="tree-name" />
+                </td>
+
+                <td>
+                    <label for="flora-dd">Enter the Flora Name:</label>
+                    <input type="flora name" id="flora-name" />
+                </td>
+            </tr>
+        </table> 
+
+        <hr>
+        <!-- <form method="GET">  
+            <input type="submit" onclick="applyFilter()"/>  
+        </form>  -->
+        <div class="apply-filters">
+            <button onclick="applyFilter()">Apply Filters</button>
+        </div>
+        <hr>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Parks</th>
+                    <th>Data</th>
+                    <th>Data</th>
+                    <th>Data</th>
+                    <th>Data</th>
+                </tr>
+            </thead>
+            <tbody id="showParks">
+
+            </tbody>
+        </table>
+
+        <hr>
+
+        <footer id="footer">
+            <p>@ National Parks Service Database 2022 </p>
+        </footer> 
+    </body>
+</html>
