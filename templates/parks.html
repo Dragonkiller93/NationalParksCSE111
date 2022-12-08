@@ -52,6 +52,7 @@
             <h3>Tokyo</h3>
             <p>Tokyo is the capital of Japan.</p>
         </div>
+        <!-- horizontal line for tables underneath -->
         <hr>
 
         <table>
@@ -88,15 +89,6 @@
                 <td>
                     <label for="biome-type">Choose a Time Zone:</label>
                     <select name="Biomes" id="biome-type">
-                    <option value="tropical">Tropical</option>
-                    <option value="rainforest">Rainforests</option>
-                    <option value="savannas">Savannas</option>
-                    <option value="subtropical deserts">Subtropical Deserts</option>
-                    <option value="chaparral">Chaparral</option>
-                    <option value="temperate grasslands">Temperate Grasslands</option>
-                    <option value="temperate forests">Temperate Forests</option>
-                    <option value="borreal forests">Boreal Forests</option>
-                    <option value="arctic tundra">Arctic Tundra</option>
                     </select>
                 </td>
             </tr>
@@ -186,9 +178,30 @@
         </table> 
 
         <hr>
-        <button>SUBMIT</button>
+        <!-- <form method="GET">  
+            <input type="submit" onclick="applyFilter()"/>  
+        </form>  -->
+        <div class="apply-filters">
+            <button onclick="applyFilter()">Apply Filters</button>
+        </div>
         <hr>
 
+        <table>
+            <thead>
+                <tr>
+                    <th>Parks</th>
+                    <th>Data</th>
+                    <th>Data</th>
+                    <th>Data</th>
+                    <th>Data</th>
+                </tr>
+            </thead>
+            <tbody id="showParks">
+
+            </tbody>
+        </table>
+
+        <hr>
 
         <footer id="footer">
             <p>@ National Parks Service Database 2022 </p>
