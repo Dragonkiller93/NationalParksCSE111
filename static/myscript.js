@@ -5,6 +5,11 @@ request.send();
 request.onload= () =>{
     data = JSON.parse(request.response);
     loadtimezones(data);
+    loadclimates(data);
+    loadprecipitation(data);
+    loadterrain(data);
+    loadcampsites(data);
+    loaddifficulty(data);
 }
 
 function loadtimezones(data){
@@ -12,6 +17,46 @@ function loadtimezones(data){
     timezones = data["timezones"]
     for (let i =0; i < Object.keys(timezones).length;i++){
         let newOption = new Option(timezones[i],timezones[i]);
+        timezonelist.add(newOption,undefined);
+    }
+}
+function loadclimates(data){
+    timezonelist = document.getElementById("climate-dd");
+    options = data["climates"]
+    for (let i =0; i < Object.keys(options).length;i++){
+        let newOption = new Option(options[i],options[i]);
+        timezonelist.add(newOption,undefined);
+    }
+}
+function loadprecipitation(data){
+    timezonelist = document.getElementById("prec-dd");
+    options = data["precipitation"]
+    for (let i =0; i < Object.keys(options).length;i++){
+        let newOption = new Option(options[i],options[i]);
+        timezonelist.add(newOption,undefined);
+    }
+}
+function loadterrain(data){
+    timezonelist = document.getElementById("terrain-dd");
+    options = data["terrain"]
+    for (let i =0; i < Object.keys(options).length;i++){
+        let newOption = new Option(options[i],options[i]);
+        timezonelist.add(newOption,undefined);
+    }
+}
+function loadcampsites(data){
+    timezonelist = document.getElementById("campsite-dd");
+    options = data["campsites"]
+    let newOption = new Option("Yes",1);
+    timezonelist.add(newOption,undefined);
+    let newOption2 = new Option("No",0);
+    timezonelist.add(newOption2,undefined);
+}
+function loaddifficulty(data){
+    timezonelist = document.getElementById("diff-dd");
+    options = data["difficulty"]
+    for (let i =0; i < Object.keys(options).length;i++){
+        let newOption = new Option(options[i],options[i]);
         timezonelist.add(newOption,undefined);
     }
 }
@@ -82,10 +127,9 @@ function applyFilter() {
     const url = "http://127.0.0.1:5000";
 
     filter1 = document.getElementById("state-name").value;
-    filter2 = document.getElementById("county-name").value;
     filter3 = document.getElementById("time-zones").value;
     filter4 = document.getElementById("climate-dd").value;
-    filter5 = document.getElementById("biome-type").value;
+    filter5 = document.getElementById("prec-dd").value;
     filter6 = document.getElementById("park-name").value;
     filter7 = document.getElementById("trail-name").value;
     filter8 = document.getElementById("terrain-dd").value;
@@ -100,10 +144,9 @@ function applyFilter() {
 
     var myDict = {};
     myDict["s_name"] = filter1;
-    myDict["county-name"] = filter2;
     myDict["s_timezone"] = filter3;
     myDict["s_climate"] = filter4;
-    myDict["p_biome"] = filter5;
+    myDict["p_precipitation"] = filter5;
     myDict["p_name"] = filter6;
     myDict["t_name"] = filter7;
     myDict["t_terrain"] = filter8;
@@ -119,30 +162,30 @@ function applyFilter() {
     for(thing in myDict){
         if(myDict[thing]=="blank" || myDict[thing]=="")delete myDict[thing];
     }
-    console.log(myDict);
 
     // const request = new XMLHttpRequest();
     // const method =  "GET";
-    // let text = "<table border='1'><tr><th>Park Name</th><th>More Data</th></tr>";
+    // 
     // request.open("GET", url + "/grades");
     // request.setRequestHeader("Content-Type", "application/json");
     // json_data = JSON.stringify(myDict);
-    // request.onload = function() {
-    //     let data = JSON.parse(request.response);
-    //     let keys = Object.keys(data);
-    //     for (let i = 0; i < keys.length; i++) {
-    //         text += "<tr><td>" + keys[i] + "</td><td>" + data[keys[i]] + "</td></tr>";
-    //     }
-    //     text += "</table>";
-    //     document.getElementById("showParks").innerHTML = text;
-    // }
-    // request.send(json_data);
+    
     let request = new XMLHttpRequest();
     request.open("PUT","/grades",true);
     request.setRequestHeader("Content-Type", "application/json");
     request.send(JSON.stringify(myDict));
     
     request.onload= () =>{
-        console.log(request.response);
+        
+        let data = JSON.parse(request.response);
+        let keys = Object.keys(data);
+        let text = "<table border='1' class=\"results\"><tr><th>Park Name</th><th>State</th><th>Temperature</th><th>Precipitation</th><th>Coordinates</th></tr>";
+        
+        for (let i = 0; i < keys.length; i++) {
+            text += "<tr><td>" + keys[i] + "</td><td>" + data[keys[i]][1] + "</td><td>" + data[keys[i]][2] + "</td><td>" + data[keys[i]][3] + "</td><td>" + data[keys[i]][4] + "</td></tr>";
+        }
+        text += "</table>";
+        document.getElementById("showParks").innerHTML = text;
+    
     }
 }

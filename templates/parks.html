@@ -28,12 +28,6 @@
             <hr>
         </div>
 
-        <div class="tab">
-            <button class="tablinks" onclick="openCity(event, 'London')" id="defaultOpen">London</button>
-            <button class="tablinks" onclick="openCity(event, 'Paris')">Paris</button>
-            <button class="tablinks" onclick="openCity(event, 'Tokyo')">Tokyo</button>
-        </div>
-        
         <!-- Tab content -->
         <div id="London" class="tabcontent">
             <span onclick="this.parentElement.style.display='none'" class="topright">&times</span>
@@ -72,18 +66,21 @@
                 <td> 
                     <label for="time-zones">Choose the Time Zone:</label>
                     <select name="timezones" id="time-zones">
+                        <option value="blank"></option>
                     </select>
                 </td>
 
                 <td>
                     <label for="climate-dd">Choose the Climate:</label>
                     <select name="climate" id="climate-dd">
+                        <option value="blank"></option>
                     </select>
                 </td>
 
                 <td>
-                    <label for="prec-type">Choose the Precipitation:</label>
-                    <select name="Prec" id="precipitation">
+                    <label for="prec-dd">Choose the Precipitation:</label>
+                    <select name="Prec" id="prec-dd">
+                        <option value="blank"></option>
                     </select>
                 </td>
 
@@ -117,17 +114,20 @@
                 <td> 
                     <label for="terrain-name">Select the Terrain Type:</label>
                     <select name="terrain type" id="terrain-dd">
+                        <option value="blank"></option>
                     </select>
 
                 <td>
                     <label for="campsite-dd">Select Campsite Option:</label>
                     <select name="campsite" id="campsite-dd">
+                        <option value="blank"></option>
                     </select>
                 </td>
 
                 <td>
                     <label for="diff-dd">Select the Difficulty:</label>
                     <select name="difficulty" id="diff-dd">
+                        <option value="blank"></option>
                     </select>
                 </td>
             </tr>
@@ -180,14 +180,9 @@
         </div>
         <hr>
 
-        <table>
+        <table class="results">
             <thead>
                 <tr>
-                    <th>Parks</th>
-                    <th>Data</th>
-                    <th>Data</th>
-                    <th>Data</th>
-                    <th>Data</th>
                 </tr>
             </thead>
             <tbody id="showParks">
